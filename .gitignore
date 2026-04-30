@@ -42,8 +42,8 @@ ios/.symlinks/
 .env
 
 # Firebase / Google credentials
-google-services.json
-GoogleService-Info.plist
+# google-services.json
+# GoogleService-Info.plist
 
 # Symbolication related
 app.*.symbols
