@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:smarthomefridge/pages/loadingPage.dart';
 import 'package:firebase_core/firebase_core.dart';
+// fix the notification function
 
 
 void main() async{
