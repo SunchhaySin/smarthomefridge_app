@@ -8,9 +8,11 @@ on:
 
 permissions:
   contents: read
+  id-token: write
+  pages: write
+  
   checks: write
   pull-requests: write
-  id-token: write
 
 concurrency:
   group: github-pages
