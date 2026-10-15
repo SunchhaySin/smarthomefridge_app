@@ -1,0 +1,45 @@
+name: Test Flutter Web Build
+
+on:
+  push:
+    branches:
+      - Build-Test
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+          
+      - name: Create .env file from secret
+        env:
+          APIKEY: ${{ secrets.APIKEY }}
+        run: |
+          printf 'APIKEY=%s\n' "$APIKEY" > .env
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build Flutter Web
+        run: flutter build web --release --base-href "/${GITHUB_REPOSITORY#*/}/"
+
+      - name: Verify build output
+        run: |
+          test -f build/web/index.html
+          echo "Flutter web build succeeded!"
+
+      - name: Build Success
+        if: success()
+        run: echo "SUCCESS: Flutter web build and verification completed successfully!"

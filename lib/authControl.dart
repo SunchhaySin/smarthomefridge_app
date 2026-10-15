@@ -12,6 +12,10 @@ class Authcontrol extends StatelessWidget {
       body: StreamBuilder<User?>(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
+          debugPrint(
+            "AUTH: state=${snapshot.connectionState} "
+            "user=${snapshot.data?.uid} err=${snapshot.error}",
+          );
           if (snapshot.hasData) {
             return Homepage();
           } else {

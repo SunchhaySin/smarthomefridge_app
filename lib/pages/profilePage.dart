@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:smarthomefridge/pages/authenticationPage.dart';
-
+import 'package:smarthomefridge/authControl.dart';
 
 class Profilepage extends StatefulWidget {
   final String? loggedInUser;
@@ -73,6 +73,14 @@ class _ProfilepageState extends State<Profilepage> {
     }
   }
 
+  Future<void> _signOut() async {
+    await FirebaseAuth.instance.signOut();
+    if (!mounted) return;
+    Navigator.of(context).pushAndRemoveUntil(
+      MaterialPageRoute(builder: (_) => const Authcontrol()),
+      (route) => false,
+    );
+  }
 
     
   @override
@@ -247,9 +255,7 @@ class _ProfilepageState extends State<Profilepage> {
               ),
               SizedBox(height: 30),
               ElevatedButton(
-                onPressed: () {
-                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => AuthenticationPage()));
-                },
+                onPressed: _signOut,
                 style: ElevatedButton.styleFrom(
                   elevation: 10,
                   backgroundColor: Colors.red.shade800.withOpacity(0.7),
