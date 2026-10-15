@@ -39,6 +39,9 @@ jobs:
         run: |
           printf 'APIKEY=%s\n' "$APIKEY" > .env
 
+      - name: Clean previous build artifacts
+        run: flutter clean
+        
       - name: Install dependencies
         run: flutter pub get
 
