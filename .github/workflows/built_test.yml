@@ -42,4 +42,5 @@ jobs:
 
       - name: Build Success
         if: success()
-        run: echo "SUCCESS: Flutter web build and verification completed successfully!"
+        run: |
+          echo "SUCCESS: Flutter web build and verification completed successfully!"
