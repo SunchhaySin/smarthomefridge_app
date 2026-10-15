@@ -10,9 +10,6 @@ permissions:
   contents: read
   id-token: write
   pages: write
-  
-  checks: write
-  pull-requests: write
 
 concurrency:
   group: github-pages
@@ -37,11 +34,11 @@ jobs:
         env:
           APIKEY: ${{ secrets.APIKEY }}
         run: |
-          printf 'APIKEY=%s\n' "$APIKEY" > .env
+          printf 'APIKEY=%s\n' "$APIKEY" > env
 
       - name: Clean previous build artifacts
         run: flutter clean
-        
+
       - name: Install dependencies
         run: flutter pub get
 

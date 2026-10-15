@@ -215,397 +215,383 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
       backgroundColor: Colors.black,
       body: Container(
         width: double.infinity,
-        child: Padding(
-          padding: EdgeInsets.only(top: 60),
-          child: Column(
-            children: [
-              Padding(
-                padding: EdgeInsets.only(bottom: 30, left: 15),
-                child: SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.9,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Image(
-                            image: AssetImage("assets/refrigerator.png"),
-                            width: 30,
-                            height: 30,
-                          ),
-                          SizedBox(width: 10),
-                          Text(
-                            "Smart Home Fridge",
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 20),
-                      Text(
-                        "Get Started Now",
-                        style: TextStyle(
-                          fontSize: 24,
-                          // fontWeight: FontWeight.bold,
-                          color: Colors.white,
+        padding: EdgeInsets.only(top: 60),
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.only(bottom: 30, left: 15),
+              child: SizedBox(
+                width: double.infinity,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Image(
+                          image: AssetImage("assets/refrigerator.png"),
+                          width: 30,
+                          height: 30,
                         ),
-                      ),
-                      Text(
-                        "Create your account or log in to get started with our app!",
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.normal,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Container(
-                  decoration: BoxDecoration(
-                    gradient: _loginMode
-                        ? LinearGradient(
-                            colors: [
-                              Colors.lightBlue.shade100,
-                              Colors.lightBlue.shade200,
-                              Colors.lightBlue.shade700,
-                            ],
-                            begin: AlignmentGeometry.topCenter,
-                            end: Alignment.bottomCenter,
-                          )
-                        : LinearGradient(
-                            colors: [
-                              Colors.lightGreen.shade100,
-                              Colors.lightGreen.shade200,
-                              Colors.lightGreen.shade700,
-                            ],
-                            begin: AlignmentGeometry.topCenter,
-                            end: Alignment.bottomCenter,
+                        SizedBox(width: 10),
+                        Text(
+                          "Smart Home Fridge",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
                           ),
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20),
+                        ),
+                      ],
                     ),
-                  ),
-                  width: MediaQuery.of(context).size.width * 1,
-                  height: MediaQuery.of(context).size.height * 0.55,
-                  child: Padding(
-                    padding: EdgeInsets.only(top: 30, left: 5),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          Container(
-                            height: 50,
-                            width: MediaQuery.of(context).size.width * 0.9,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.42,
-                                  height: 50,
-                                  child: ElevatedButton(
-                                    onPressed: () {
-                                      setState(() {
-                                        _loginMode = true;
-                                        _signupMode = false;
-                                      });
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                      elevation: 5,
-                                      shadowColor: _loginMode
-                                          ? Colors.blue
-                                          : Colors.blueGrey,
-                                      backgroundColor: _loginMode
-                                          ? Colors.black
-                                          : Colors.grey.shade300,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        "Log In",
-                                        style: TextStyle(
-                                          color: _loginMode
-                                              ? Colors.lightBlue
-                                              : Colors.blueGrey,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: _loginMode ? 18 : 16,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.42,
-                                  height: 50,
-                                  child: ElevatedButton(
-                                    onPressed: () {
-                                      setState(() {
-                                        _signupMode = true;
-                                        _loginMode = false;
-                                      });
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                      elevation: 5,
-                                      shadowColor: _signupMode
-                                          ? Colors.green
-                                          : Colors.blueGrey,
-                                      backgroundColor: _signupMode
-                                          ? Colors.black
-                                          : Colors.grey.shade300,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(5),
-                                      ),
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        "Sign Up",
-                                        style: TextStyle(
-                                          color: _signupMode
-                                              ? Colors.greenAccent
-                                              : Colors.blueGrey,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: _signupMode ? 18 : 16,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(height: _loginMode ? 60 : 20),
-                          Padding(
-                            padding: EdgeInsets.only(bottom: 20),
-                            child: Icon(
-                              Icons.account_circle_sharp,
-                              size: 120,
-                              color: _loginMode ? Colors.blue : Colors.green,
-                            ),
-                          ),
-                          Text(
-                            _loginMode ? 'Login Account' : 'Create Account',
-                            style: TextStyle(
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black87,
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(bottom: 4, top: 30),
-                            child: SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.65,
-                              height: 45,
-                              child: TextField(
-                                controller: _signupMode
-                                    ? _emailsignupController
-                                    : _emailController,
-                                decoration: InputDecoration(
-                                  prefixIcon: Icon(
-                                    Icons.person_2_outlined,
-                                    size: 30,
-                                  ),
-                                  hintText: 'Email',
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(12),
-                                    borderSide: BorderSide.none,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          _signupMode
-                              ? Padding(
-                                  padding: EdgeInsets.only(bottom: 4, top: 4),
-                                  child: SizedBox(
-                                    width:
-                                        MediaQuery.of(context).size.width *
-                                        0.65,
-                                    height: 45,
-                                    child: TextField(
-                                      controller: _usernameController,
-                                      decoration: InputDecoration(
-                                        prefixIcon: Icon(
-                                          Icons.person_2_outlined,
-                                          size: 30,
-                                        ),
-                                        hintText: 'Username',
-                                        filled: true,
-                                        fillColor: Colors.white,
-                                        border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(
-                                            12,
-                                          ),
-                                          borderSide: BorderSide.none,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              : SizedBox.shrink(),
-                          Padding(
-                            padding: EdgeInsets.only(bottom: 4, top: 4),
-                            child: SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.65,
-                              height: 45,
-                              child: TextField(
-                                controller: _signupMode
-                                    ? _passwordsignupController
-                                    : _passwordController,
-                                obscureText: _obscurePassword,
-                                decoration: InputDecoration(
-                                  prefixIcon: Icon(
-                                    Icons.lock_outline_rounded,
-                                    size: 25,
-                                  ),
-                                  hintText: 'Password',
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(12),
-                                    borderSide: BorderSide.none,
-                                  ),
-                                  suffixIcon: IconButton(
-                                    icon: Icon(
-                                      _obscurePassword
-                                          ? Icons.visibility_off
-                                          : Icons.visibility,
-                                    ),
-                                    onPressed: () {
-                                      setState(() {
-                                        _obscurePassword = !_obscurePassword;
-                                      });
-                                    },
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          _signupMode
-                              ? Padding(
-                                  padding: EdgeInsets.only(bottom: 4, top: 4),
-                                  child: SizedBox(
-                                    width:
-                                        MediaQuery.of(context).size.width *
-                                        0.65,
-                                    height: 45,
-                                    child: TextField(
-                                      controller: _confirmPasswordController,
-                                      obscureText: _obscurePassword,
-                                      decoration: InputDecoration(
-                                        prefixIcon: Icon(
-                                          Icons.lock_outline_rounded,
-                                          size: 25,
-                                        ),
-                                        hintText: 'Confirm  Password',
-                                        filled: true,
-                                        fillColor: Colors.white,
-                                        border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(
-                                            12,
-                                          ),
-                                          borderSide: BorderSide.none,
-                                        ),
-                                        suffixIcon: IconButton(
-                                          icon: Icon(
-                                            _obscurePassword
-                                                ? Icons.visibility_off
-                                                : Icons.visibility,
-                                          ),
-                                          onPressed: () {
-                                            setState(() {
-                                              _obscurePassword =
-                                                  !_obscurePassword;
-                                            });
-                                          },
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              : Padding(
-                                  padding: EdgeInsets.only(top: 5),
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      _resetpassword();
-                                    },
-                                    child: Align(
-                                      alignment: Alignment(0.48, 0),
-                                      child: Text(
-                                        "Forgot Password?",
-                                        style: TextStyle(color: Colors.black),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                          Padding(
-                            padding: EdgeInsets.only(top: 20),
-                            child: SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.65,
-                              height: 45,
-                              child: ElevatedButton(
-                                onPressed: _isLoading
-                                    ? null
-                                    : () {
-                                        _loginMode
-                                            ? _handleLogin()
-                                            : _handleSignup();
-                                      },
-                                style: ElevatedButton.styleFrom(
-                                  elevation: 5,
-                                  backgroundColor: Colors.black,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                ),
-                                child: _isLoading
-                                    ? SizedBox(
-                                        height: 20,
-                                        width: 20,
-                                        child: CircularProgressIndicator(
-                                          strokeWidth: 2.5,
-                                          valueColor:
-                                              AlwaysStoppedAnimation<Color>(
-                                                _loginMode
-                                                    ? Colors.blue.shade400
-                                                    : Colors.green.shade400,
-                                              ),
-                                        ),
-                                      )
-                                    : Text(
-                                        _loginMode ? 'Login' : 'Sign Up',
-                                        style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold,
-                                          color: _loginMode
-                                              ? Colors.blue.shade400
-                                              : Colors.green.shade400,
-                                        ),
-                                      ),
-                              ),
-                            ),
-                          ),
-                        ],
+                    SizedBox(height: 20),
+                    Text(
+                      "Get Started Now",
+                      style: TextStyle(
+                        fontSize: 24,
+                        // fontWeight: FontWeight.bold,
+                        color: Colors.white,
                       ),
                     ),
-                  ),
+                    Text(
+                      "Create your account or log in to get started with our app!",
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.normal,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            ],
+            ),
+            Expanded(
+              child: Container(
+                decoration: BoxDecoration(
+                  gradient: _loginMode
+                      ? LinearGradient(
+                          colors: [
+                            Colors.lightBlue.shade100,
+                            Colors.lightBlue.shade200,
+                            Colors.lightBlue.shade700,
+                          ],
+                          begin: AlignmentGeometry.topCenter,
+                          end: Alignment.bottomCenter,
+                        )
+                      : LinearGradient(
+                          colors: [
+                            Colors.lightGreen.shade100,
+                            Colors.lightGreen.shade200,
+                            Colors.lightGreen.shade700,
+                          ],
+                          begin: AlignmentGeometry.topCenter,
+                          end: Alignment.bottomCenter,
+                        ),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20),
+                  ),
+                ),
+                // width: MediaQuery.of(context).size.width * 1,
+                // height: MediaQuery.of(context).size.height * 0.55,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        Container(
+                          height: 50,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Row(
+        children: [
+          Expanded(
+            child: SizedBox(
+      height: 50,
+      child: ElevatedButton(
+        onPressed: () {
+          setState(() {
+            _loginMode = true;
+            _signupMode = false;
+          });
+        },
+        style: ElevatedButton.styleFrom(
+          elevation: 5,
+          shadowColor: _loginMode ? Colors.blue : Colors.blueGrey,
+          backgroundColor: _loginMode
+              ? Colors.black
+              : Colors.grey.shade300,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
           ),
+        ),
+        child: Text(
+          "Log In",
+          style: TextStyle(
+            color: _loginMode ? Colors.lightBlue : Colors.blueGrey,
+            fontWeight: FontWeight.bold,
+            fontSize: _loginMode ? 18 : 16,
+          ),
+        ),
+      ),
+            ),
+          ),
+          const SizedBox(width: 10),
+          Expanded(
+            child: SizedBox(
+      height: 50,
+      child: ElevatedButton(
+        onPressed: () {
+          setState(() {
+            _signupMode = true;
+            _loginMode = false;
+          });
+        },
+        style: ElevatedButton.styleFrom(
+          elevation: 5,
+          shadowColor: _signupMode ? Colors.green : Colors.blueGrey,
+          backgroundColor: _signupMode
+              ? Colors.black
+              : Colors.grey.shade300,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+        child: Text(
+          "Sign Up",
+          style: TextStyle(
+            color: _signupMode ? Colors.greenAccent : Colors.blueGrey,
+            fontWeight: FontWeight.bold,
+            fontSize: _signupMode ? 18 : 16,
+          ),
+        ),
+      ),
+            ),
+          ),
+        ],
+      ),
+                        ),
+                        SizedBox(height: _loginMode ? 60 : 20),
+                        Padding(
+                          padding: EdgeInsets.only(bottom: 20),
+                          child: Icon(
+                            Icons.account_circle_sharp,
+                            size: 120,
+                            color: _loginMode ? Colors.blue : Colors.green,
+                          ),
+                        ),
+                        Text(
+                          _loginMode ? 'Login Account' : 'Create Account',
+                          style: TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black87,
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(bottom: 4, top: 30),
+                          child: SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.65,
+                            height: 45,
+                            child: TextField(
+                              controller: _signupMode
+                                  ? _emailsignupController
+                                  : _emailController,
+                              decoration: InputDecoration(
+                                prefixIcon: Icon(
+                                  Icons.person_2_outlined,
+                                  size: 30,
+                                ),
+                                hintText: 'Email',
+                                filled: true,
+                                fillColor: Colors.white,
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                  borderSide: BorderSide.none,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        _signupMode
+                            ? Padding(
+                                padding: EdgeInsets.only(bottom: 4, top: 4),
+                                child: SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width *
+                                      0.65,
+                                  height: 45,
+                                  child: TextField(
+                                    controller: _usernameController,
+                                    decoration: InputDecoration(
+                                      prefixIcon: Icon(
+                                        Icons.person_2_outlined,
+                                        size: 30,
+                                      ),
+                                      hintText: 'Username',
+                                      filled: true,
+                                      fillColor: Colors.white,
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(
+                                          12,
+                                        ),
+                                        borderSide: BorderSide.none,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            : SizedBox.shrink(),
+                        Padding(
+                          padding: EdgeInsets.only(bottom: 4, top: 4),
+                          child: SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.65,
+                            height: 45,
+                            child: TextField(
+                              controller: _signupMode
+                                  ? _passwordsignupController
+                                  : _passwordController,
+                              obscureText: _obscurePassword,
+                              decoration: InputDecoration(
+                                prefixIcon: Icon(
+                                  Icons.lock_outline_rounded,
+                                  size: 25,
+                                ),
+                                hintText: 'Password',
+                                filled: true,
+                                fillColor: Colors.white,
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                  borderSide: BorderSide.none,
+                                ),
+                                suffixIcon: IconButton(
+                                  icon: Icon(
+                                    _obscurePassword
+                                        ? Icons.visibility_off
+                                        : Icons.visibility,
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      _obscurePassword = !_obscurePassword;
+                                    });
+                                  },
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        _signupMode
+                            ? Padding(
+                                padding: EdgeInsets.only(bottom: 4, top: 4),
+                                child: SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width *
+                                      0.65,
+                                  height: 45,
+                                  child: TextField(
+                                    controller: _confirmPasswordController,
+                                    obscureText: _obscurePassword,
+                                    decoration: InputDecoration(
+                                      prefixIcon: Icon(
+                                        Icons.lock_outline_rounded,
+                                        size: 25,
+                                      ),
+                                      hintText: 'Confirm  Password',
+                                      filled: true,
+                                      fillColor: Colors.white,
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(
+                                          12,
+                                        ),
+                                        borderSide: BorderSide.none,
+                                      ),
+                                      suffixIcon: IconButton(
+                                        icon: Icon(
+                                          _obscurePassword
+                                              ? Icons.visibility_off
+                                              : Icons.visibility,
+                                        ),
+                                        onPressed: () {
+                                          setState(() {
+                                            _obscurePassword =
+                                                !_obscurePassword;
+                                          });
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            : Padding(
+                                padding: EdgeInsets.only(top: 5),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    _resetpassword();
+                                  },
+                                  child: Align(
+                                    alignment: Alignment(0.48, 0),
+                                    child: Text(
+                                      "Forgot Password?",
+                                      style: TextStyle(color: Colors.black),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                        Padding(
+                          padding: EdgeInsets.only(top: 20),
+                          child: SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.65,
+                            height: 45,
+                            child: ElevatedButton(
+                              onPressed: _isLoading
+                                  ? null
+                                  : () {
+                                      _loginMode
+                                          ? _handleLogin()
+                                          : _handleSignup();
+                                    },
+                              style: ElevatedButton.styleFrom(
+                                elevation: 5,
+                                backgroundColor: Colors.black,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                              ),
+                              child: _isLoading
+                                  ? SizedBox(
+                                      height: 20,
+                                      width: 20,
+                                      child: CircularProgressIndicator(
+                                        strokeWidth: 2.5,
+                                        valueColor:
+                                            AlwaysStoppedAnimation<Color>(
+                                              _loginMode
+                                                  ? Colors.blue.shade400
+                                                  : Colors.green.shade400,
+                                            ),
+                                      ),
+                                    )
+                                  : Text(
+                                      _loginMode ? 'Login' : 'Sign Up',
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        color: _loginMode
+                                            ? Colors.blue.shade400
+                                            : Colors.green.shade400,
+                                      ),
+                                    ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

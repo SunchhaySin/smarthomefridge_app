@@ -5,12 +5,14 @@ import 'package:http/http.dart' as http;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:smarthomefridge/authControl.dart';
 import 'package:smarthomefridge/builders/insertPanel.dart';
 import 'package:smarthomefridge/builders/itemList.dart';
 import 'package:smarthomefridge/pages/notificationPage.dart';
 import 'package:smarthomefridge/pages/profilePage.dart';
 import 'package:smarthomefridge/pages/recipePage.dart';
 import 'package:smarthomefridge/pages/spendingPage.dart';
+import 'package:flutter/foundation.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -50,7 +52,6 @@ class _HomepageState extends State<Homepage>
     });
   }
 
-
   void signOut() {
     showDialog(
       context: context,
@@ -70,7 +71,11 @@ class _HomepageState extends State<Homepage>
               ),
               onPressed: () {
                 FirebaseAuth.instance.signOut();
-                Navigator.of(context).pop();
+                if (!mounted) return;
+                Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (_) => const Authcontrol()),
+                  (route) => false,
+                );
               },
               child: Text("Sign Out", style: TextStyle(color: Colors.white)),
             ),
@@ -244,6 +249,7 @@ class _HomepageState extends State<Homepage>
               child: Container(
                 color: Colors.indigo.shade50,
                 width: double.infinity,
+                padding: kIsWeb ? EdgeInsets.symmetric(horizontal: 20) : EdgeInsets.zero,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -271,7 +277,9 @@ class _HomepageState extends State<Homepage>
                             color: Colors.indigo.shade100,
                             borderRadius: BorderRadius.all(Radius.circular(10)),
                           ),
-                          padding: EdgeInsets.symmetric(vertical: 15),
+                          padding: kIsWeb 
+                              ? EdgeInsets.symmetric(vertical: 15, horizontal: 20)
+                              : EdgeInsets.symmetric(vertical: 15),
                           child: StreamBuilder<QuerySnapshot>(
                             stream: FirebaseFirestore.instance
                                 .collection("StoredItem")
@@ -498,9 +506,7 @@ class _HomepageState extends State<Homepage>
                                                       item["itemName"] ?? "",
                                                     );
 
-                                                Navigator.of(
-                                                  context,
-                                                ).pop(); 
+                                                Navigator.of(context).pop();
 
                                                 if (!mounted) return;
 

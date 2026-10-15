@@ -168,19 +168,24 @@ class _RecipepageState extends State<Recipepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      body: SingleChildScrollView(
         child: Container(
           width: double.infinity,
           color: Colors.indigo.shade50,
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             children: [
-              SizedBox(height: 60),
-              Text(
-                "Kitchen Assistant",
-                style: TextStyle(
-                  color: Colors.indigo.shade800,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
+              SizedBox(height: 50),
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.9,
+                child: Text(
+                  "Kitchen Assistant",
+                  style: TextStyle(
+                    color: Colors.indigo.shade800,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
+                  textAlign: TextAlign.start,
                 ),
               ),
               SizedBox(height: 15),

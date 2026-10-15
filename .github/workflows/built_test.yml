@@ -27,7 +27,7 @@ jobs:
         env:
           APIKEY: ${{ secrets.APIKEY }}
         run: |
-          printf 'APIKEY=%s\n' "$APIKEY" > .env
+          printf 'APIKEY=%s\n' "$APIKEY" > env
 
       - name: Install dependencies
         run: flutter pub get
