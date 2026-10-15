@@ -1,16 +1,36 @@
 {
   "hosting": {
     "public": "build/web",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [{ "source": "**", "destination": "/index.html" }]
+  },
+  "flutter": {
+    "platforms": {
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "smarthomefridge-4a362",
+          "configurations": {
+            "android": "1:453580402862:android:09b5dd885f8c7bd8e47d3f",
+            "ios": "1:453580402862:ios:4194759bbd734352e47d3f",
+            "web": "1:453580402862:web:094615c1faa53db2e47d3f"
+          }
+        }
+      },
+      "android": {
+        "default": {
+          "projectId": "smarthomefridge-4a362",
+          "appId": "1:453580402862:android:09b5dd885f8c7bd8e47d3f",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "ios": {
+        "default": {
+          "projectId": "smarthomefridge-4a362",
+          "appId": "1:453580402862:ios:4194759bbd734352e47d3f",
+          "uploadDebugSymbols": false,
+          "fileOutput": "ios/Runner/GoogleService-Info.plist"
+        }
       }
-    ]
+    }
   }
 }
