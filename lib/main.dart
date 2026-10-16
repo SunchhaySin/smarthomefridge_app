@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:smarthomefridge/pages/loadingPage.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
 import 'firebase_options.dart';
 
 
@@ -18,13 +17,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isLargeScreen = MediaQuery.sizeOf(context).width > 460; 
+    
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       builder: (context, child) {
 
         // Constrain the width and height of the app when opened on bigger screens (web)
-        if(kIsWeb) {
+        if(isLargeScreen) {
           return MobileFrameWrapper(child: child ?? const SizedBox());
         }
         return child ?? const SizedBox();

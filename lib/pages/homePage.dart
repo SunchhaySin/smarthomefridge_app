@@ -12,7 +12,6 @@ import 'package:smarthomefridge/pages/notificationPage.dart';
 import 'package:smarthomefridge/pages/profilePage.dart';
 import 'package:smarthomefridge/pages/recipePage.dart';
 import 'package:smarthomefridge/pages/spendingPage.dart';
-import 'package:flutter/foundation.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -201,6 +200,8 @@ class _HomepageState extends State<Homepage>
 
   @override
   Widget build(BuildContext context) {
+    bool isLargeScreen = MediaQuery.sizeOf(context).width > 460; 
+
     return Scaffold(
       backgroundColor: Colors.indigo.shade50,
       appBar: _selectedIndex == 0
@@ -249,7 +250,7 @@ class _HomepageState extends State<Homepage>
               child: Container(
                 color: Colors.indigo.shade50,
                 width: double.infinity,
-                padding: kIsWeb ? EdgeInsets.symmetric(horizontal: 20) : EdgeInsets.zero,
+                padding: isLargeScreen ? EdgeInsets.symmetric(horizontal: 20) : EdgeInsets.zero,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -277,7 +278,7 @@ class _HomepageState extends State<Homepage>
                             color: Colors.indigo.shade100,
                             borderRadius: BorderRadius.all(Radius.circular(10)),
                           ),
-                          padding: kIsWeb 
+                          padding: isLargeScreen 
                               ? EdgeInsets.symmetric(vertical: 15, horizontal: 20)
                               : EdgeInsets.symmetric(vertical: 15),
                           child: StreamBuilder<QuerySnapshot>(

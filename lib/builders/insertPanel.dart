@@ -73,9 +73,11 @@ class _InsertpanelState extends State<Insertpanel> {
       });
 
       if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text("Added ${itemNameController.text.trim()} to fridge!")),
-    );
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Added ${itemNameController.text.trim()} to fridge!"),
+        ),
+      );
     } on FirebaseException catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(e.message ?? "Failed to add item")),
@@ -104,7 +106,7 @@ class _InsertpanelState extends State<Insertpanel> {
         "message": "Updated ${itemNameController.text.trim()} in your fridge",
         "createdAt": FieldValue.serverTimestamp(),
       });
-      
+
       if (!mounted) return;
       ScaffoldMessenger.of(
         context,
@@ -161,7 +163,11 @@ class _InsertpanelState extends State<Insertpanel> {
             widget.isEdit
                 ? "Edit item in fridge"
                 : "Insert new Items into Fridge",
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.indigo.shade800),
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.indigo.shade800,
+            ),
           ),
           SizedBox(height: 15),
           SizedBox(
@@ -184,56 +190,62 @@ class _InsertpanelState extends State<Insertpanel> {
           SizedBox(height: 5),
           Row(
             children: [
-              SizedBox(
-                height: 40,
-                width: MediaQuery.of(context).size.width * 0.40,
-                child: DropdownButtonFormField<String>(
-                  value: selectedCategory,
-                  isExpanded: true,
-                  hint: Center(child: Text('Category', style: TextStyle(fontSize: 14))),
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.white,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide.none,
+              Expanded(
+                child: SizedBox(
+                  height: 40,
+                  child: DropdownButtonFormField<String>(
+                    value: selectedCategory,
+                    isExpanded: true,
+                    hint: Center(
+                      child: Text('Category', style: TextStyle(fontSize: 14)),
                     ),
-                    contentPadding: EdgeInsets.symmetric(vertical: 10),
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide: BorderSide.none,
+                      ),
+                      contentPadding: EdgeInsets.symmetric(vertical: 10),
+                    ),
+                    items: categoryUnits.keys.map((category) {
+                      return DropdownMenuItem(
+                        value: category,
+                        child: Center(
+                          child: Text(category, style: TextStyle(fontSize: 14)),
+                        ),
+                      );
+                    }).toList(),
+                    onChanged: (value) {
+                      setState(() {
+                        selectedCategory = value;
+                        itemCategoryController.text = value ?? '';
+                        quantityUnit = categoryUnits[value] ?? '';
+                      });
+                    },
                   ),
-                  items: categoryUnits.keys.map((category) {
-                    return DropdownMenuItem(
-                      value: category,
-                      child: Center(child: Text(category, style: TextStyle(fontSize: 14))),
-                    );
-                  }).toList(),
-                  onChanged: (value) {
-                    setState(() {
-                      selectedCategory = value;
-                      itemCategoryController.text = value ?? '';
-                      quantityUnit = categoryUnits[value] ?? '';
-                    });
-                  },
                 ),
               ),
               SizedBox(width: 5),
-              SizedBox(
-                height: 40,
-                width: MediaQuery.of(context).size.width * 0.37,
-                child: TextField(
-                  controller: itemQuantityController,
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(
-                      Icons.production_quantity_limits,
-                      size: 20,
-                    ),
-                    hintText: 'Quantity',
-                    hintStyle: TextStyle(fontSize: 14),
-                    suffixText: quantityUnit, 
-                    filled: true,
-                    fillColor: Colors.white,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide.none,
+              Expanded(
+                child: SizedBox(
+                  height: 40,
+                  child: TextField(
+                    controller: itemQuantityController,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(
+                        Icons.production_quantity_limits,
+                        size: 20,
+                      ),
+                      hintText: 'Quantity',
+                      hintStyle: TextStyle(fontSize: 14),
+                      suffixText: quantityUnit,
+                      filled: true,
+                      fillColor: Colors.white,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide: BorderSide.none,
+                      ),
                     ),
                   ),
                 ),
@@ -244,41 +256,43 @@ class _InsertpanelState extends State<Insertpanel> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              SizedBox(
-                height: 40,
-                width: MediaQuery.of(context).size.width * 0.40,
-                child: TextField(
-                  controller: itemExpirationDateController,
-                  readOnly: true,
-                  onTap: () => _selectDate(),
-                  decoration: InputDecoration(
-                    suffixIcon: Icon(Icons.calendar_today),
-                    hintText: 'Expire Date',
-                    hintStyle: TextStyle(fontSize: 14),
-                    filled: true,
-                    fillColor: Colors.white,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide.none,
+              Expanded(
+                child: SizedBox(
+                  height: 40,
+                  child: TextField(
+                    controller: itemExpirationDateController,
+                    readOnly: true,
+                    onTap: () => _selectDate(),
+                    decoration: InputDecoration(
+                      suffixIcon: Icon(Icons.calendar_today),
+                      hintText: 'Expire Date',
+                      hintStyle: TextStyle(fontSize: 14),
+                      filled: true,
+                      fillColor: Colors.white,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide: BorderSide.none,
+                      ),
                     ),
                   ),
                 ),
               ),
               SizedBox(width: 5),
-              SizedBox(
-                height: 40,
-                width: MediaQuery.of(context).size.width * 0.37,
-                child: TextField(
-                  controller: itemPriceController,
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.currency_bitcoin_outlined),
-                    hintText: 'Price',
-                    hintStyle: TextStyle(fontSize: 14),
-                    filled: true,
-                    fillColor: Colors.white,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide.none,
+              Expanded(
+                child: SizedBox(
+                  height: 40,
+                  child: TextField(
+                    controller: itemPriceController,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.currency_bitcoin_outlined),
+                      hintText: 'Price',
+                      hintStyle: TextStyle(fontSize: 14),
+                      filled: true,
+                      fillColor: Colors.white,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide: BorderSide.none,
+                      ),
                     ),
                   ),
                 ),
